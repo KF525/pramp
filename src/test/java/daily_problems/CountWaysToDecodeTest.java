@@ -1,3 +1,5 @@
+package daily_problems;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,6 +16,5 @@ public class CountWaysToDecodeTest {
         Assert.assertEquals(2, countWaysToDecode.countDecodes(input1));
         Assert.assertEquals(3, countWaysToDecode.countDecodes(input2));
         Assert.assertEquals(2, countWaysToDecode.countDecodes(input3));
-
     }
 }

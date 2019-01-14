@@ -1,3 +1,5 @@
+package sessions;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,8 +9,8 @@ public class WordCountEngine {
     static int largestCount = -1;
 
     public static String[][] wordCountEngine(String text) {
-        String[] words = generateWordList(text);
-        Map<String, Integer> frequencyMap = getFrequency(words);
+        String[] words = generateWordList(text); //clean up words and return an array of each
+        Map<String, Integer> frequencyMap = getFrequency(words); //get frequency of the words
         return sortWords(frequencyMap);
     }
 
@@ -17,7 +19,7 @@ public class WordCountEngine {
         //init a word counter list of lists.
         List<List<String>> wordCounter = new ArrayList<>(largestCount + 1);
         for (int i=0; i < largestCount + 1; i++) {
-            wordCounter.add(null);
+            wordCounter.add(null); //set each index to null
         }
 
         //add all words to list indexed by corresponding occurrence number
@@ -38,10 +40,10 @@ public class WordCountEngine {
 
     private static String[][] buildResult(List<List<String>> bucket, int uniqueWords) {
         //iterate through the list in reverse order and add only non-null values to result
-        String[][] result = new String[uniqueWords][2];
+        String[][] result = new String[uniqueWords][2]; //size of array will be unique words, and each entry will contain word and count
         int currentIndex = 0;
 
-        for (int i=bucket.size()-1; i > 0; i--) {
+        for (int i=bucket.size()-1; i > 0; i--) { //because we want to go from the largest count to smallest
             List<String> words = bucket.get(i);
             if (words == null) continue;
             for (String word: words) {

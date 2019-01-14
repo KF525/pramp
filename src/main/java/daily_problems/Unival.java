@@ -1,3 +1,5 @@
+package daily_problems;
+
 public class Unival {
 
     public int countUnival(Node root) {

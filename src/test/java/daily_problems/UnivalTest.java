@@ -1,3 +1,5 @@
+package daily_problems;
+
 import org.junit.Assert;
 import org.junit.Test;
 

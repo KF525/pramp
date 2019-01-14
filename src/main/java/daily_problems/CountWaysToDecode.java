@@ -1,3 +1,5 @@
+package daily_problems;
+
 public class CountWaysToDecode {
 
     public int countDecodes(String input) {
