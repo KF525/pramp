@@ -1,6 +1,7 @@
 package daily_problems;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ClassroomCount {
@@ -26,7 +27,6 @@ public class ClassroomCount {
     }
 
     public int findClassroom(int end, List<List<Integer>> classrooms) {
-
         int index = -1;
         int diff = Integer.MAX_VALUE;
 
@@ -39,5 +39,37 @@ public class ClassroomCount {
         }
 
         return index;
+    }
+
+    public int returnClassroomCount2(int[][] schedules) {
+        int[] start = new int[schedules.length];
+        int[] end = new int[schedules.length];
+        int maxCount = 0;
+        int currentCount = 0;
+        int startIndex = 0;
+        int endIndex = 0;
+
+        for (int i = 0; i < schedules.length; i++) {
+            start[i] = schedules[i][0];
+            end[i] = schedules[i][1];
+        }
+
+        Arrays.sort(start);
+        Arrays.sort(end);
+
+        while (startIndex < start.length && endIndex < end.length) {
+            if (start[startIndex] < end[endIndex]) {
+                currentCount++;
+                startIndex++;
+                if (currentCount > maxCount) {
+                    maxCount = currentCount;
+                }
+            } else {
+                currentCount--;
+                endIndex++;
+            }
+        }
+
+        return maxCount;
     }
 }

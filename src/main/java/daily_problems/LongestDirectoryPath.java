@@ -1,6 +1,6 @@
 package daily_problems;
 
-public class LongestPath {
+public class LongestDirectoryPath {
 
     public int getLongestPath(String path) {
        Node dir = new Node("dir");

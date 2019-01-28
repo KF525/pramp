@@ -33,7 +33,7 @@ public class BinaryTreeArithmetic {
         //then throw?? or the remaining operator
 
 
-    public class Node {
+    static class Node {
         String data;
         Node left,right;
 

@@ -4,48 +4,38 @@ import java.util.*;
 
 public class ArrayQuadruplet {
 
-    public List<Integer> findArrayQuadruplet(int[] input, int target) {
-      Arrays.sort(input); //sort list
+    public int[] findArrayQuadruplet(int[] input, int target) {
+        int length = input.length;
+        int[] result = new int[4];
 
-      // TODO: Complete
-        return null;
-    }
-
-    public List<Integer> findArrayPair(int[] input, int target) {
-        Arrays.sort(input);
-        List<Integer> pair = new ArrayList<>();
-        int start = 0;
-        int end = input.length - 1;
-
-        while (start <= end && pair.isEmpty()) {
-            int total = input[start] + input[end];
-            if (total < target) {
-                start = start + 1;
-            } else if (total > target) {
-                end = end - 1;
-            } else {
-                pair.add(input[end]);
-                pair.add(input[start]);
-            }
-        }
-        return pair;
-    }
-
-    public List<Integer> findArrayPairWithSet(int[] input, int target) {
-        Set<Integer> remainder = new HashSet<>();
-        List<Integer> result = new ArrayList<>();
-
-        for (int i: input) {
-            if (remainder.contains(i)) {
-                result.add(target-i);
-                result.add(i);
-                return result;
-            } else {
-                remainder.add(target - i);
-            }
+        if (length < 4) {
+            return null;
         }
 
+        Arrays.sort(input); //sort list
+
+        for (int i = 0; i <= length - 4; i++) {
+            for (int j = i + 1; j <= length - 3; j++) {
+                int remainder = target - (input[i] + input[j]);
+                int low = j + 1;
+                int high = length - 1;
+
+                while (low < high) {
+                    if (input[low] + input[high] < remainder) {
+                        low++;
+                    } else if (input[low] + input[high] > remainder) {
+                        high--;
+                    } else {
+                        result[0] = input[i];
+                        result[1] = input[j];
+                        result[2] = input[low];
+                        result[3] = input[high];
+                        return result;
+                    }
+                }
+            }
+
+        }
         return result;
     }
-
 }

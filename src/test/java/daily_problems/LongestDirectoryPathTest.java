@@ -3,8 +3,8 @@ package daily_problems;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class LongestPathTest {
-    LongestPath longestPath = new LongestPath();
+public class LongestDirectoryPathTest {
+    LongestDirectoryPath longestPath = new LongestDirectoryPath();
 
     @Test
     public void pathToTreeReturnsTreeForm() {
