@@ -6,6 +6,71 @@ import java.util.List;
 import java.util.Map;
 
 public class WordCountEngine {
+    static int largestCount2 = 0;
+
+    public static String[][] wordCountEngine2(String text) {
+        String[] parsedText = parseText2(text); //parse string: case insensitive, no punctuation, no white space
+        Map<String, Integer> frequencyMap = getFrequency2(parsedText); //get ordered frequency
+        List<List<String>> orderedWords = orderWords2(frequencyMap);
+        return buildReturn2(orderedWords, frequencyMap.size()); //return ordered array
+    }
+
+    public static String[] parseText2(String text) {
+        return text.toLowerCase().replaceAll("[^a-z\\s]", "").split("\\s+");
+    }
+
+    public static Map<String, Integer> getFrequency2(String[] parsedText) {
+        Map<String, Integer> frequencyMap = new LinkedHashMap<>();
+
+        for (String word: parsedText) {
+            if (!frequencyMap.containsKey(word)) {
+                frequencyMap.put(word, 0);
+            }
+
+            Integer count = frequencyMap.get(word);
+            frequencyMap.put(word, count+1);
+            if (count + 1 > largestCount2) {
+                largestCount2 = count+1;
+            }
+        }
+
+        return frequencyMap;
+    }
+
+    public static List<List<String>> orderWords2(Map<String, Integer> frequencyMap) {
+        List<List<String>> orderedWords = new ArrayList<>(largestCount2 + 1);
+
+        for (int i = 0; i < largestCount2 + 1; i++) {
+            orderedWords.add(null);
+        }
+
+        for (String word: frequencyMap.keySet()) {
+            Integer count = frequencyMap.get(word);
+            if (orderedWords == null) {
+                orderedWords.set(count, new ArrayList<>());
+            }
+            orderedWords.get(count).add(word);
+        }
+
+        return orderedWords;
+    }
+
+    public static String[][] buildReturn2(List<List<String>> orderedWords, int uniqueWords) {
+        String[][] resultArray = new String[uniqueWords][2];
+        int currentIndex = 0;
+
+        for (int i = orderedWords.size() - 1; i > 0; i--) {
+            List<String> words= orderedWords.get(i);
+            if (words == null) continue;
+            for (String word: words) {
+                resultArray[currentIndex][0] = word;
+                resultArray[currentIndex][1] = String.valueOf(i);
+                currentIndex++;
+            }
+        }
+        return resultArray;
+    }
+
     static int largestCount = -1;
 
     public static String[][] wordCountEngine(String text) {
